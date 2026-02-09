@@ -1,4 +1,4 @@
-module github.com/sariya23/game_state_service
+module github.com/sariya23/api_game_state_service
 
 go 1.25.5
 
