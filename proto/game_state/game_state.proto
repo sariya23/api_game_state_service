@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package game_state;
+option go_package = "github.com/sariya23/api_game_state_service/gen/game_state;pbgame_state";
+import "google/api/annotations.proto";
+
+service GameState {
+  rpc Ping(PingRequest) returns (PingResponse) {
+    option (google.api.http) = {
+      get: "/v1/game-state/ping"
+    };
+  }
+}
+
+message PingRequest {}
+message PingResponse {
+  string message = 1;
+}
