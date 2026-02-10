@@ -261,6 +261,17 @@ func (m *GetUserGameStatesRequest) validate(all bool) error {
 
 	var errors []error
 
+	if len(m.GetGameIds()) < 1 {
+		err := GetUserGameStatesRequestValidationError{
+			field:  "GameIds",
+			reason: "value must contain at least 1 item(s)",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
 	for idx, item := range m.GetGameIds() {
 		_, _ = idx, item
 

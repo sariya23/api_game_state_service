@@ -268,9 +268,9 @@ const file_game_state_game_state_proto_rawDesc = "" +
 	"game_state\x1a\x1cgoogle/api/annotations.proto\x1a\x17validate/validate.proto\x1a\x12common/enums.proto\"\r\n" +
 	"\vPingRequest\"(\n" +
 	"\fPingResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage\"\\\n" +
-	"\x18GetUserGameStatesRequest\x12'\n" +
-	"\bgame_ids\x18\x01 \x03(\x03B\f\xfaB\t\x92\x01\x06\"\x04\"\x02(\x00R\agameIds\x12\x17\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\"^\n" +
+	"\x18GetUserGameStatesRequest\x12)\n" +
+	"\bgame_ids\x18\x01 \x03(\x03B\x0e\xfaB\v\x92\x01\b\b\x01\"\x04\"\x02(\x00R\agameIds\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\"\xe4\x01\n" +
 	"\x19GetUserGameStatesResponse\x12P\n" +
 	"\vgame_states\x18\x01 \x03(\v2/.game_state.GetUserGameStatesResponse.GameStateR\n" +

@@ -27,7 +27,7 @@ message PingResponse {
 };
 
 message GetUserGameStatesRequest {
-  repeated int64 game_ids = 1 [(validate.rules).repeated.items.int64.gte = 0];
+  repeated int64 game_ids = 1 [(validate.rules).repeated = {items { int64 {gte: 0}}, min_items: 1}];
   string user_id = 2;
 };
 
