@@ -6,30 +6,40 @@ import "google/api/annotations.proto";
 import "validate/validate.proto";
 import "common/enums.proto";
 
+
+
 service GameState {
   rpc Ping(PingRequest) returns (PingResponse) {
     option (google.api.http) = {
       get: "/v1/game-state/ping"
     };
-  };
+  }
 
   rpc GetUserGameStates(GetUserGameStatesRequest) returns (GetUserGameStatesResponse) {
     option (google.api.http) = {
       post: "/v1/game-state/user"
       body: "*"
     };
-  };
+  }
+
+  rpc AddToLibrary(AddToLibraryRequest) returns (AddToLibraryResponse) {
+    option (google.api.http) = {
+      post: "/v1/game-state/add"
+      body: "*"
+    };
+  }
+
 }
 
-message PingRequest {};
+message PingRequest {}
 message PingResponse {
   string message = 1;
-};
+}
 
 message GetUserGameStatesRequest {
   repeated int64 game_ids = 1 [(validate.rules).repeated = {items { int64 {gte: 0}}, min_items: 1}];
   string user_id = 2;
-};
+}
 
 message GetUserGameStatesResponse {
   repeated GameState game_states = 1;
@@ -37,5 +47,13 @@ message GetUserGameStatesResponse {
     int64 game_id = 1;
     common.GameLinkState state = 2;
     string user_id = 3;
-  };
-};
+  }
+}
+
+message AddToLibraryRequest {
+  int64 game_id = 1 [(validate.rules).int64.gte = 0];
+  common.GameLinkState init_state = 2;
+}
+
+message AddToLibraryResponse {
+}

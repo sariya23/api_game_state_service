@@ -506,6 +506,223 @@ var _ interface {
 	ErrorName() string
 } = GetUserGameStatesResponseValidationError{}
 
+// Validate checks the field values on AddToLibraryRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *AddToLibraryRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on AddToLibraryRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// AddToLibraryRequestMultiError, or nil if none found.
+func (m *AddToLibraryRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *AddToLibraryRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if m.GetGameId() < 0 {
+		err := AddToLibraryRequestValidationError{
+			field:  "GameId",
+			reason: "value must be greater than or equal to 0",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	// no validation rules for InitState
+
+	if len(errors) > 0 {
+		return AddToLibraryRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// AddToLibraryRequestMultiError is an error wrapping multiple validation
+// errors returned by AddToLibraryRequest.ValidateAll() if the designated
+// constraints aren't met.
+type AddToLibraryRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m AddToLibraryRequestMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m AddToLibraryRequestMultiError) AllErrors() []error { return m }
+
+// AddToLibraryRequestValidationError is the validation error returned by
+// AddToLibraryRequest.Validate if the designated constraints aren't met.
+type AddToLibraryRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e AddToLibraryRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e AddToLibraryRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e AddToLibraryRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e AddToLibraryRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e AddToLibraryRequestValidationError) ErrorName() string {
+	return "AddToLibraryRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e AddToLibraryRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sAddToLibraryRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = AddToLibraryRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = AddToLibraryRequestValidationError{}
+
+// Validate checks the field values on AddToLibraryResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *AddToLibraryResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on AddToLibraryResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// AddToLibraryResponseMultiError, or nil if none found.
+func (m *AddToLibraryResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *AddToLibraryResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if len(errors) > 0 {
+		return AddToLibraryResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// AddToLibraryResponseMultiError is an error wrapping multiple validation
+// errors returned by AddToLibraryResponse.ValidateAll() if the designated
+// constraints aren't met.
+type AddToLibraryResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m AddToLibraryResponseMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m AddToLibraryResponseMultiError) AllErrors() []error { return m }
+
+// AddToLibraryResponseValidationError is the validation error returned by
+// AddToLibraryResponse.Validate if the designated constraints aren't met.
+type AddToLibraryResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e AddToLibraryResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e AddToLibraryResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e AddToLibraryResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e AddToLibraryResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e AddToLibraryResponseValidationError) ErrorName() string {
+	return "AddToLibraryResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e AddToLibraryResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sAddToLibraryResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = AddToLibraryResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = AddToLibraryResponseValidationError{}
+
 // Validate checks the field values on GetUserGameStatesResponse_GameState with
 // the rules defined in the proto definition for this message. If any rules
 // are violated, the first error encountered is returned, or nil if there are

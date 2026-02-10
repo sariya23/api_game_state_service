@@ -16,6 +16,38 @@
     "application/json"
   ],
   "paths": {
+    "/v1/game-state/add": {
+      "post": {
+        "operationId": "GameState_AddToLibrary",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/game_stateAddToLibraryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/game_stateAddToLibraryRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GameState"
+        ]
+      }
+    },
     "/v1/game-state/ping": {
       "get": {
         "operationId": "GameState_Ping",
@@ -99,6 +131,21 @@
         "ON_PAUSE"
       ],
       "default": "UNKNOWN"
+    },
+    "game_stateAddToLibraryRequest": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "initState": {
+          "$ref": "#/definitions/commonGameLinkState"
+        }
+      }
+    },
+    "game_stateAddToLibraryResponse": {
+      "type": "object"
     },
     "game_stateGetUserGameStatesRequest": {
       "type": "object",
