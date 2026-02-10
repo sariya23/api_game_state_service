@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package game_state.common;
+option go_package = "github.com/sariya23/api_game_state_service/gen/common;common";
+
+
+
+enum GameLinkState {
+  UNKNOWN = 0;
+  BACKLOG = 1;
+  IN_PROGRESS = 2;
+  DONE = 3;
+  NOT_COMPLETED = 4;
+  RE_PLAYING = 5;
+  ON_PAUSE = 6;
+}

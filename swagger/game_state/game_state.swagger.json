@@ -37,9 +37,96 @@
           "GameState"
         ]
       }
+    },
+    "/v1/game-state/user": {
+      "post": {
+        "operationId": "GameState_GetUserGameStates",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/game_stateGetUserGameStatesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/game_stateGetUserGameStatesRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GameState"
+        ]
+      }
     }
   },
   "definitions": {
+    "GetUserGameStatesResponseGameState": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "state": {
+          "$ref": "#/definitions/commonGameLinkState"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "commonGameLinkState": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "BACKLOG",
+        "IN_PROGRESS",
+        "DONE",
+        "NOT_COMPLETED",
+        "RE_PLAYING",
+        "ON_PAUSE"
+      ],
+      "default": "UNKNOWN"
+    },
+    "game_stateGetUserGameStatesRequest": {
+      "type": "object",
+      "properties": {
+        "gameIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "game_stateGetUserGameStatesResponse": {
+      "type": "object",
+      "properties": {
+        "gameStates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/GetUserGameStatesResponseGameState"
+          }
+        }
+      }
+    },
     "game_statePingResponse": {
       "type": "object",
       "properties": {

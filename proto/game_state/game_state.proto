@@ -3,16 +3,39 @@ syntax = "proto3";
 package game_state;
 option go_package = "github.com/sariya23/api_game_state_service/gen/game_state;pbgame_state";
 import "google/api/annotations.proto";
+import "validate/validate.proto";
+import "common/enums.proto";
 
 service GameState {
   rpc Ping(PingRequest) returns (PingResponse) {
     option (google.api.http) = {
       get: "/v1/game-state/ping"
     };
-  }
+  };
+
+  rpc GetUserGameStates(GetUserGameStatesRequest) returns (GetUserGameStatesResponse) {
+    option (google.api.http) = {
+      post: "/v1/game-state/user"
+      body: "*"
+    };
+  };
 }
 
-message PingRequest {}
+message PingRequest {};
 message PingResponse {
   string message = 1;
-}
+};
+
+message GetUserGameStatesRequest {
+  repeated int64 game_ids = 1 [(validate.rules).repeated.items.int64.gte = 0];
+  string user_id = 2;
+};
+
+message GetUserGameStatesResponse {
+  repeated GameState game_states = 1;
+  message GameState {
+    int64 game_id = 1;
+    common.GameLinkState state = 2;
+    string user_id = 3;
+  };
+};

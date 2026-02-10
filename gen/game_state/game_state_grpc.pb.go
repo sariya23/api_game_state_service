@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	GameState_Ping_FullMethodName = "/game_state.GameState/Ping"
+	GameState_Ping_FullMethodName              = "/game_state.GameState/Ping"
+	GameState_GetUserGameStates_FullMethodName = "/game_state.GameState/GetUserGameStates"
 )
 
 // GameStateClient is the client API for GameState service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GameStateClient interface {
 	Ping(ctx context.Context, in *PingRequest, opts ...grpc.CallOption) (*PingResponse, error)
+	GetUserGameStates(ctx context.Context, in *GetUserGameStatesRequest, opts ...grpc.CallOption) (*GetUserGameStatesResponse, error)
 }
 
 type gameStateClient struct {
@@ -47,11 +49,22 @@ func (c *gameStateClient) Ping(ctx context.Context, in *PingRequest, opts ...grp
 	return out, nil
 }
 
+func (c *gameStateClient) GetUserGameStates(ctx context.Context, in *GetUserGameStatesRequest, opts ...grpc.CallOption) (*GetUserGameStatesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserGameStatesResponse)
+	err := c.cc.Invoke(ctx, GameState_GetUserGameStates_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GameStateServer is the server API for GameState service.
 // All implementations must embed UnimplementedGameStateServer
 // for forward compatibility.
 type GameStateServer interface {
 	Ping(context.Context, *PingRequest) (*PingResponse, error)
+	GetUserGameStates(context.Context, *GetUserGameStatesRequest) (*GetUserGameStatesResponse, error)
 	mustEmbedUnimplementedGameStateServer()
 }
 
@@ -64,6 +77,9 @@ type UnimplementedGameStateServer struct{}
 
 func (UnimplementedGameStateServer) Ping(context.Context, *PingRequest) (*PingResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Ping not implemented")
+}
+func (UnimplementedGameStateServer) GetUserGameStates(context.Context, *GetUserGameStatesRequest) (*GetUserGameStatesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetUserGameStates not implemented")
 }
 func (UnimplementedGameStateServer) mustEmbedUnimplementedGameStateServer() {}
 func (UnimplementedGameStateServer) testEmbeddedByValue()                   {}
@@ -104,6 +120,24 @@ func _GameState_Ping_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GameState_GetUserGameStates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserGameStatesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GameStateServer).GetUserGameStates(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GameState_GetUserGameStates_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GameStateServer).GetUserGameStates(ctx, req.(*GetUserGameStatesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GameState_ServiceDesc is the grpc.ServiceDesc for GameState service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +148,10 @@ var GameState_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Ping",
 			Handler:    _GameState_Ping_Handler,
+		},
+		{
+			MethodName: "GetUserGameStates",
+			Handler:    _GameState_GetUserGameStates_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
