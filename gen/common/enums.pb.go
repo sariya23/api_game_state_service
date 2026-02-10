@@ -24,34 +24,37 @@ const (
 type GameLinkState int32
 
 const (
-	GameLinkState_UNKNOWN       GameLinkState = 0
-	GameLinkState_BACKLOG       GameLinkState = 1
-	GameLinkState_IN_PROGRESS   GameLinkState = 2
-	GameLinkState_DONE          GameLinkState = 3
-	GameLinkState_NOT_COMPLETED GameLinkState = 4
-	GameLinkState_RE_PLAYING    GameLinkState = 5
-	GameLinkState_ON_PAUSE      GameLinkState = 6
+	GameLinkState_UNKNOWN        GameLinkState = 0
+	GameLinkState_NOT_IN_LIBRARY GameLinkState = 1
+	GameLinkState_BACKLOG        GameLinkState = 2
+	GameLinkState_IN_PROGRESS    GameLinkState = 3
+	GameLinkState_DONE           GameLinkState = 4
+	GameLinkState_NOT_COMPLETED  GameLinkState = 5
+	GameLinkState_RE_PLAYING     GameLinkState = 6
+	GameLinkState_ON_PAUSE       GameLinkState = 7
 )
 
 // Enum value maps for GameLinkState.
 var (
 	GameLinkState_name = map[int32]string{
 		0: "UNKNOWN",
-		1: "BACKLOG",
-		2: "IN_PROGRESS",
-		3: "DONE",
-		4: "NOT_COMPLETED",
-		5: "RE_PLAYING",
-		6: "ON_PAUSE",
+		1: "NOT_IN_LIBRARY",
+		2: "BACKLOG",
+		3: "IN_PROGRESS",
+		4: "DONE",
+		5: "NOT_COMPLETED",
+		6: "RE_PLAYING",
+		7: "ON_PAUSE",
 	}
 	GameLinkState_value = map[string]int32{
-		"UNKNOWN":       0,
-		"BACKLOG":       1,
-		"IN_PROGRESS":   2,
-		"DONE":          3,
-		"NOT_COMPLETED": 4,
-		"RE_PLAYING":    5,
-		"ON_PAUSE":      6,
+		"UNKNOWN":        0,
+		"NOT_IN_LIBRARY": 1,
+		"BACKLOG":        2,
+		"IN_PROGRESS":    3,
+		"DONE":           4,
+		"NOT_COMPLETED":  5,
+		"RE_PLAYING":     6,
+		"ON_PAUSE":       7,
 	}
 )
 
@@ -86,16 +89,17 @@ var File_common_enums_proto protoreflect.FileDescriptor
 
 const file_common_enums_proto_rawDesc = "" +
 	"\n" +
-	"\x12common/enums.proto\x12\x11game_state.common*u\n" +
+	"\x12common/enums.proto\x12\x11game_state.common*\x89\x01\n" +
 	"\rGameLinkState\x12\v\n" +
-	"\aUNKNOWN\x10\x00\x12\v\n" +
-	"\aBACKLOG\x10\x01\x12\x0f\n" +
-	"\vIN_PROGRESS\x10\x02\x12\b\n" +
-	"\x04DONE\x10\x03\x12\x11\n" +
-	"\rNOT_COMPLETED\x10\x04\x12\x0e\n" +
+	"\aUNKNOWN\x10\x00\x12\x12\n" +
+	"\x0eNOT_IN_LIBRARY\x10\x01\x12\v\n" +
+	"\aBACKLOG\x10\x02\x12\x0f\n" +
+	"\vIN_PROGRESS\x10\x03\x12\b\n" +
+	"\x04DONE\x10\x04\x12\x11\n" +
+	"\rNOT_COMPLETED\x10\x05\x12\x0e\n" +
 	"\n" +
-	"RE_PLAYING\x10\x05\x12\f\n" +
-	"\bON_PAUSE\x10\x06B>Z<github.com/sariya23/api_game_state_service/gen/common;commonb\x06proto3"
+	"RE_PLAYING\x10\x06\x12\f\n" +
+	"\bON_PAUSE\x10\aB>Z<github.com/sariya23/api_game_state_service/gen/common;commonb\x06proto3"
 
 var (
 	file_common_enums_proto_rawDescOnce sync.Once
