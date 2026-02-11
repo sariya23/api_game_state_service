@@ -52,7 +52,6 @@ message GetUserGameStatesResponse {
 
 message AddToLibraryRequest {
   int64 game_id = 1 [(validate.rules).int64.gte = 0];
-  common.GameLinkState init_state = 2;
 }
 
 message AddToLibraryResponse {

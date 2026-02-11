@@ -539,8 +539,6 @@ func (m *AddToLibraryRequest) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
-	// no validation rules for InitState
-
 	if len(errors) > 0 {
 		return AddToLibraryRequestMultiError(errors)
 	}

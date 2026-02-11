@@ -123,6 +123,7 @@
       "type": "string",
       "enum": [
         "UNKNOWN",
+        "IN_LIBRARY",
         "BACKLOG",
         "IN_PROGRESS",
         "DONE",
@@ -138,9 +139,6 @@
         "gameId": {
           "type": "string",
           "format": "int64"
-        },
-        "initState": {
-          "$ref": "#/definitions/commonGameLinkState"
         }
       }
     },

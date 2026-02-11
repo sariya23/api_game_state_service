@@ -203,7 +203,6 @@ func (x *GetUserGameStatesResponse) GetGameStates() []*GetUserGameStatesResponse
 type AddToLibraryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	GameId        int64                  `protobuf:"varint,1,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
-	InitState     common.GameLinkState   `protobuf:"varint,2,opt,name=init_state,json=initState,proto3,enum=game_state.common.GameLinkState" json:"init_state,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -243,13 +242,6 @@ func (x *AddToLibraryRequest) GetGameId() int64 {
 		return x.GameId
 	}
 	return 0
-}
-
-func (x *AddToLibraryRequest) GetInitState() common.GameLinkState {
-	if x != nil {
-		return x.InitState
-	}
-	return common.GameLinkState(0)
 }
 
 type AddToLibraryResponse struct {
@@ -366,11 +358,9 @@ const file_game_state_game_state_proto_rawDesc = "" +
 	"\tGameState\x12\x17\n" +
 	"\agame_id\x18\x01 \x01(\x03R\x06gameId\x126\n" +
 	"\x05state\x18\x02 \x01(\x0e2 .game_state.common.GameLinkStateR\x05state\x12\x17\n" +
-	"\auser_id\x18\x03 \x01(\tR\x06userId\"x\n" +
+	"\auser_id\x18\x03 \x01(\tR\x06userId\"7\n" +
 	"\x13AddToLibraryRequest\x12 \n" +
-	"\agame_id\x18\x01 \x01(\x03B\a\xfaB\x04\"\x02(\x00R\x06gameId\x12?\n" +
-	"\n" +
-	"init_state\x18\x02 \x01(\x0e2 .game_state.common.GameLinkStateR\tinitState\"\x16\n" +
+	"\agame_id\x18\x01 \x01(\x03B\a\xfaB\x04\"\x02(\x00R\x06gameId\"\x16\n" +
 	"\x14AddToLibraryResponse2\xd8\x02\n" +
 	"\tGameState\x12V\n" +
 	"\x04Ping\x12\x17.game_state.PingRequest\x1a\x18.game_state.PingResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v1/game-state/ping\x12\x80\x01\n" +
@@ -402,19 +392,18 @@ var file_game_state_game_state_proto_goTypes = []any{
 }
 var file_game_state_game_state_proto_depIdxs = []int32{
 	6, // 0: game_state.GetUserGameStatesResponse.game_states:type_name -> game_state.GetUserGameStatesResponse.GameState
-	7, // 1: game_state.AddToLibraryRequest.init_state:type_name -> game_state.common.GameLinkState
-	7, // 2: game_state.GetUserGameStatesResponse.GameState.state:type_name -> game_state.common.GameLinkState
-	0, // 3: game_state.GameState.Ping:input_type -> game_state.PingRequest
-	2, // 4: game_state.GameState.GetUserGameStates:input_type -> game_state.GetUserGameStatesRequest
-	4, // 5: game_state.GameState.AddToLibrary:input_type -> game_state.AddToLibraryRequest
-	1, // 6: game_state.GameState.Ping:output_type -> game_state.PingResponse
-	3, // 7: game_state.GameState.GetUserGameStates:output_type -> game_state.GetUserGameStatesResponse
-	5, // 8: game_state.GameState.AddToLibrary:output_type -> game_state.AddToLibraryResponse
-	6, // [6:9] is the sub-list for method output_type
-	3, // [3:6] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	7, // 1: game_state.GetUserGameStatesResponse.GameState.state:type_name -> game_state.common.GameLinkState
+	0, // 2: game_state.GameState.Ping:input_type -> game_state.PingRequest
+	2, // 3: game_state.GameState.GetUserGameStates:input_type -> game_state.GetUserGameStatesRequest
+	4, // 4: game_state.GameState.AddToLibrary:input_type -> game_state.AddToLibraryRequest
+	1, // 5: game_state.GameState.Ping:output_type -> game_state.PingResponse
+	3, // 6: game_state.GameState.GetUserGameStates:output_type -> game_state.GetUserGameStatesResponse
+	5, // 7: game_state.GameState.AddToLibrary:output_type -> game_state.AddToLibraryResponse
+	5, // [5:8] is the sub-list for method output_type
+	2, // [2:5] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_game_state_game_state_proto_init() }
