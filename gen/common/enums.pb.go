@@ -24,21 +24,21 @@ const (
 type GameLinkState int32
 
 const (
-	GameLinkState_UNKNOWN        GameLinkState = 0
-	GameLinkState_NOT_IN_LIBRARY GameLinkState = 1
-	GameLinkState_BACKLOG        GameLinkState = 2
-	GameLinkState_IN_PROGRESS    GameLinkState = 3
-	GameLinkState_DONE           GameLinkState = 4
-	GameLinkState_NOT_COMPLETED  GameLinkState = 5
-	GameLinkState_RE_PLAYING     GameLinkState = 6
-	GameLinkState_ON_PAUSE       GameLinkState = 7
+	GameLinkState_UNKNOWN       GameLinkState = 0
+	GameLinkState_IN_LIBRARY    GameLinkState = 1
+	GameLinkState_BACKLOG       GameLinkState = 2
+	GameLinkState_IN_PROGRESS   GameLinkState = 3
+	GameLinkState_DONE          GameLinkState = 4
+	GameLinkState_NOT_COMPLETED GameLinkState = 5
+	GameLinkState_RE_PLAYING    GameLinkState = 6
+	GameLinkState_ON_PAUSE      GameLinkState = 7
 )
 
 // Enum value maps for GameLinkState.
 var (
 	GameLinkState_name = map[int32]string{
 		0: "UNKNOWN",
-		1: "NOT_IN_LIBRARY",
+		1: "IN_LIBRARY",
 		2: "BACKLOG",
 		3: "IN_PROGRESS",
 		4: "DONE",
@@ -47,14 +47,14 @@ var (
 		7: "ON_PAUSE",
 	}
 	GameLinkState_value = map[string]int32{
-		"UNKNOWN":        0,
-		"NOT_IN_LIBRARY": 1,
-		"BACKLOG":        2,
-		"IN_PROGRESS":    3,
-		"DONE":           4,
-		"NOT_COMPLETED":  5,
-		"RE_PLAYING":     6,
-		"ON_PAUSE":       7,
+		"UNKNOWN":       0,
+		"IN_LIBRARY":    1,
+		"BACKLOG":       2,
+		"IN_PROGRESS":   3,
+		"DONE":          4,
+		"NOT_COMPLETED": 5,
+		"RE_PLAYING":    6,
+		"ON_PAUSE":      7,
 	}
 )
 
@@ -89,10 +89,11 @@ var File_common_enums_proto protoreflect.FileDescriptor
 
 const file_common_enums_proto_rawDesc = "" +
 	"\n" +
-	"\x12common/enums.proto\x12\x11game_state.common*\x89\x01\n" +
+	"\x12common/enums.proto\x12\x11game_state.common*\x85\x01\n" +
 	"\rGameLinkState\x12\v\n" +
-	"\aUNKNOWN\x10\x00\x12\x12\n" +
-	"\x0eNOT_IN_LIBRARY\x10\x01\x12\v\n" +
+	"\aUNKNOWN\x10\x00\x12\x0e\n" +
+	"\n" +
+	"IN_LIBRARY\x10\x01\x12\v\n" +
 	"\aBACKLOG\x10\x02\x12\x0f\n" +
 	"\vIN_PROGRESS\x10\x03\x12\b\n" +
 	"\x04DONE\x10\x04\x12\x11\n" +

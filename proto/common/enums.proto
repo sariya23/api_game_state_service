@@ -7,7 +7,7 @@ option go_package = "github.com/sariya23/api_game_state_service/gen/common;commo
 
 enum GameLinkState {
   UNKNOWN = 0;
-  NOT_IN_LIBRARY = 1;
+  IN_LIBRARY = 1;
   BACKLOG = 2;
   IN_PROGRESS = 3;
   DONE = 4;
