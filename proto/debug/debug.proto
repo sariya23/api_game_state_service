@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package game_state.debug;
+option go_package = "github.com/sariya23/api_game_state_service/gen/debug;pbdebug";
+
+
+service Debug {
+  rpc JWTToken(JWTTokenRequest) returns (JWTTokenResponse) {}
+}
+
+
+message JWTTokenRequest {}
+message JWTTokenResponse {
+  string token = 1;
+}
