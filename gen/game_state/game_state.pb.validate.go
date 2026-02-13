@@ -747,7 +747,16 @@ func (m *ChangeStatusRequest) validate(all bool) error {
 
 	// no validation rules for StatusTo
 
-	// no validation rules for GameId
+	if m.GetGameId() < 0 {
+		err := ChangeStatusRequestValidationError{
+			field:  "GameId",
+			reason: "value must be greater than or equal to 0",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
 	if len(errors) > 0 {
 		return ChangeStatusRequestMultiError(errors)
