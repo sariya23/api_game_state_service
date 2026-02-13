@@ -66,6 +66,7 @@ message AddToLibraryResponse {
 message ChangeStatusRequest {
   common.GameLinkState status_from = 1;
   common.GameLinkState status_to = 2;
+  int64 game_id = 3;
 }
 
 message ChangeStatusResponse {}

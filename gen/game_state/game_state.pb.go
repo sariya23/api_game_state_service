@@ -284,6 +284,7 @@ type ChangeStatusRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	StatusFrom    common.GameLinkState   `protobuf:"varint,1,opt,name=status_from,json=statusFrom,proto3,enum=game_state.common.GameLinkState" json:"status_from,omitempty"`
 	StatusTo      common.GameLinkState   `protobuf:"varint,2,opt,name=status_to,json=statusTo,proto3,enum=game_state.common.GameLinkState" json:"status_to,omitempty"`
+	GameId        int64                  `protobuf:"varint,3,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -330,6 +331,13 @@ func (x *ChangeStatusRequest) GetStatusTo() common.GameLinkState {
 		return x.StatusTo
 	}
 	return common.GameLinkState(0)
+}
+
+func (x *ChangeStatusRequest) GetGameId() int64 {
+	if x != nil {
+		return x.GameId
+	}
+	return 0
 }
 
 type ChangeStatusResponse struct {
@@ -449,11 +457,12 @@ const file_game_state_game_state_proto_rawDesc = "" +
 	"\auser_id\x18\x03 \x01(\tR\x06userId\"7\n" +
 	"\x13AddToLibraryRequest\x12 \n" +
 	"\agame_id\x18\x01 \x01(\x03B\a\xfaB\x04\"\x02(\x00R\x06gameId\"\x16\n" +
-	"\x14AddToLibraryResponse\"\x97\x01\n" +
+	"\x14AddToLibraryResponse\"\xb0\x01\n" +
 	"\x13ChangeStatusRequest\x12A\n" +
 	"\vstatus_from\x18\x01 \x01(\x0e2 .game_state.common.GameLinkStateR\n" +
 	"statusFrom\x12=\n" +
-	"\tstatus_to\x18\x02 \x01(\x0e2 .game_state.common.GameLinkStateR\bstatusTo\"\x16\n" +
+	"\tstatus_to\x18\x02 \x01(\x0e2 .game_state.common.GameLinkStateR\bstatusTo\x12\x17\n" +
+	"\agame_id\x18\x03 \x01(\x03R\x06gameId\"\x16\n" +
 	"\x14ChangeStatusResponse2\xcd\x03\n" +
 	"\tGameState\x12V\n" +
 	"\x04Ping\x12\x17.game_state.PingRequest\x1a\x18.game_state.PingResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v1/game-state/ping\x12\x80\x01\n" +

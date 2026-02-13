@@ -186,6 +186,10 @@
         },
         "statusTo": {
           "$ref": "#/definitions/commonGameLinkState"
+        },
+        "gameId": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },

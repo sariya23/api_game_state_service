@@ -747,6 +747,8 @@ func (m *ChangeStatusRequest) validate(all bool) error {
 
 	// no validation rules for StatusTo
 
+	// no validation rules for GameId
+
 	if len(errors) > 0 {
 		return ChangeStatusRequestMultiError(errors)
 	}
