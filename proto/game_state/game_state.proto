@@ -28,6 +28,12 @@ service GameState {
       body: "*"
     };
   }
+  rpc ChangeStatus(ChangeStatusRequest) returns (ChangeStatusResponse) {
+    option (google.api.http) = {
+      patch: "/v1/game-state/change"
+      body: "*"
+    };
+  }
 
 }
 
@@ -56,3 +62,10 @@ message AddToLibraryRequest {
 
 message AddToLibraryResponse {
 }
+
+message ChangeStatusRequest {
+  common.GameLinkState status_from = 1;
+  common.GameLinkState status_to = 2;
+}
+
+message ChangeStatusResponse {}

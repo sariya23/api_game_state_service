@@ -721,6 +721,214 @@ var _ interface {
 	ErrorName() string
 } = AddToLibraryResponseValidationError{}
 
+// Validate checks the field values on ChangeStatusRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *ChangeStatusRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ChangeStatusRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// ChangeStatusRequestMultiError, or nil if none found.
+func (m *ChangeStatusRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ChangeStatusRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for StatusFrom
+
+	// no validation rules for StatusTo
+
+	if len(errors) > 0 {
+		return ChangeStatusRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// ChangeStatusRequestMultiError is an error wrapping multiple validation
+// errors returned by ChangeStatusRequest.ValidateAll() if the designated
+// constraints aren't met.
+type ChangeStatusRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ChangeStatusRequestMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ChangeStatusRequestMultiError) AllErrors() []error { return m }
+
+// ChangeStatusRequestValidationError is the validation error returned by
+// ChangeStatusRequest.Validate if the designated constraints aren't met.
+type ChangeStatusRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ChangeStatusRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ChangeStatusRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ChangeStatusRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ChangeStatusRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ChangeStatusRequestValidationError) ErrorName() string {
+	return "ChangeStatusRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ChangeStatusRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sChangeStatusRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ChangeStatusRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ChangeStatusRequestValidationError{}
+
+// Validate checks the field values on ChangeStatusResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *ChangeStatusResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ChangeStatusResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// ChangeStatusResponseMultiError, or nil if none found.
+func (m *ChangeStatusResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ChangeStatusResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if len(errors) > 0 {
+		return ChangeStatusResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// ChangeStatusResponseMultiError is an error wrapping multiple validation
+// errors returned by ChangeStatusResponse.ValidateAll() if the designated
+// constraints aren't met.
+type ChangeStatusResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ChangeStatusResponseMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ChangeStatusResponseMultiError) AllErrors() []error { return m }
+
+// ChangeStatusResponseValidationError is the validation error returned by
+// ChangeStatusResponse.Validate if the designated constraints aren't met.
+type ChangeStatusResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ChangeStatusResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ChangeStatusResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ChangeStatusResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ChangeStatusResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ChangeStatusResponseValidationError) ErrorName() string {
+	return "ChangeStatusResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ChangeStatusResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sChangeStatusResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ChangeStatusResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ChangeStatusResponseValidationError{}
+
 // Validate checks the field values on GetUserGameStatesResponse_GameState with
 // the rules defined in the proto definition for this message. If any rules
 // are violated, the first error encountered is returned, or nil if there are

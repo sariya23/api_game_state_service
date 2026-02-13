@@ -22,6 +22,7 @@ const (
 	GameState_Ping_FullMethodName              = "/game_state.GameState/Ping"
 	GameState_GetUserGameStates_FullMethodName = "/game_state.GameState/GetUserGameStates"
 	GameState_AddToLibrary_FullMethodName      = "/game_state.GameState/AddToLibrary"
+	GameState_ChangeStatus_FullMethodName      = "/game_state.GameState/ChangeStatus"
 )
 
 // GameStateClient is the client API for GameState service.
@@ -31,6 +32,7 @@ type GameStateClient interface {
 	Ping(ctx context.Context, in *PingRequest, opts ...grpc.CallOption) (*PingResponse, error)
 	GetUserGameStates(ctx context.Context, in *GetUserGameStatesRequest, opts ...grpc.CallOption) (*GetUserGameStatesResponse, error)
 	AddToLibrary(ctx context.Context, in *AddToLibraryRequest, opts ...grpc.CallOption) (*AddToLibraryResponse, error)
+	ChangeStatus(ctx context.Context, in *ChangeStatusRequest, opts ...grpc.CallOption) (*ChangeStatusResponse, error)
 }
 
 type gameStateClient struct {
@@ -71,6 +73,16 @@ func (c *gameStateClient) AddToLibrary(ctx context.Context, in *AddToLibraryRequ
 	return out, nil
 }
 
+func (c *gameStateClient) ChangeStatus(ctx context.Context, in *ChangeStatusRequest, opts ...grpc.CallOption) (*ChangeStatusResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ChangeStatusResponse)
+	err := c.cc.Invoke(ctx, GameState_ChangeStatus_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GameStateServer is the server API for GameState service.
 // All implementations must embed UnimplementedGameStateServer
 // for forward compatibility.
@@ -78,6 +90,7 @@ type GameStateServer interface {
 	Ping(context.Context, *PingRequest) (*PingResponse, error)
 	GetUserGameStates(context.Context, *GetUserGameStatesRequest) (*GetUserGameStatesResponse, error)
 	AddToLibrary(context.Context, *AddToLibraryRequest) (*AddToLibraryResponse, error)
+	ChangeStatus(context.Context, *ChangeStatusRequest) (*ChangeStatusResponse, error)
 	mustEmbedUnimplementedGameStateServer()
 }
 
@@ -96,6 +109,9 @@ func (UnimplementedGameStateServer) GetUserGameStates(context.Context, *GetUserG
 }
 func (UnimplementedGameStateServer) AddToLibrary(context.Context, *AddToLibraryRequest) (*AddToLibraryResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method AddToLibrary not implemented")
+}
+func (UnimplementedGameStateServer) ChangeStatus(context.Context, *ChangeStatusRequest) (*ChangeStatusResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ChangeStatus not implemented")
 }
 func (UnimplementedGameStateServer) mustEmbedUnimplementedGameStateServer() {}
 func (UnimplementedGameStateServer) testEmbeddedByValue()                   {}
@@ -172,6 +188,24 @@ func _GameState_AddToLibrary_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GameState_ChangeStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChangeStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GameStateServer).ChangeStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GameState_ChangeStatus_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GameStateServer).ChangeStatus(ctx, req.(*ChangeStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GameState_ServiceDesc is the grpc.ServiceDesc for GameState service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -190,6 +224,10 @@ var GameState_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddToLibrary",
 			Handler:    _GameState_AddToLibrary_Handler,
+		},
+		{
+			MethodName: "ChangeStatus",
+			Handler:    _GameState_ChangeStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
