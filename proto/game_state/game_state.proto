@@ -35,6 +35,11 @@ service GameState {
     };
   }
 
+  rpc GetStatuses(GetStatusesRequest) returns (GetStatusesResponse) {
+    option (google.api.http) = {
+      get: "/v1/game-state/status"
+    };
+  }
 }
 
 message PingRequest {}
@@ -43,7 +48,7 @@ message PingResponse {
 }
 
 message GetUserGameStatesRequest {
-  repeated int64 game_ids = 1 [(validate.rules).repeated = {items { int64 {gte: 0}}, min_items: 1}];
+  repeated int64 game_ids = 1 [(validate.rules).repeated = {items {int64 {gte: 0}}, min_items: 1}];
   string user_id = 2;
 }
 
@@ -70,3 +75,12 @@ message ChangeStatusRequest {
 }
 
 message ChangeStatusResponse {}
+
+message GetStatusesRequest {}
+message GetStatusesResponse {
+  repeated Status statuses = 1;
+  message Status {
+    int64 id = 1;
+    string name = 2;
+  }
+}

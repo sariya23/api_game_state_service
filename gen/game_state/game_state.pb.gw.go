@@ -137,6 +137,27 @@ func local_request_GameState_ChangeStatus_0(ctx context.Context, marshaler runti
 	return msg, metadata, err
 }
 
+func request_GameState_GetStatuses_0(ctx context.Context, marshaler runtime.Marshaler, client GameStateClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetStatusesRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.GetStatuses(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_GameState_GetStatuses_0(ctx context.Context, marshaler runtime.Marshaler, server GameStateServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetStatusesRequest
+		metadata runtime.ServerMetadata
+	)
+	msg, err := server.GetStatuses(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 // RegisterGameStateHandlerServer registers the http handlers for service GameState to "mux".
 // UnaryRPC     :call GameStateServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -222,6 +243,26 @@ func RegisterGameStateHandlerServer(ctx context.Context, mux *runtime.ServeMux, 
 			return
 		}
 		forward_GameState_ChangeStatus_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_GameState_GetStatuses_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/game_state.GameState/GetStatuses", runtime.WithHTTPPathPattern("/v1/game-state/status"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_GameState_GetStatuses_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_GameState_GetStatuses_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
@@ -331,6 +372,23 @@ func RegisterGameStateHandlerClient(ctx context.Context, mux *runtime.ServeMux, 
 		}
 		forward_GameState_ChangeStatus_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_GameState_GetStatuses_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/game_state.GameState/GetStatuses", runtime.WithHTTPPathPattern("/v1/game-state/status"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_GameState_GetStatuses_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_GameState_GetStatuses_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	return nil
 }
 
@@ -339,6 +397,7 @@ var (
 	pattern_GameState_GetUserGameStates_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "game-state", "user"}, ""))
 	pattern_GameState_AddToLibrary_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "game-state", "add"}, ""))
 	pattern_GameState_ChangeStatus_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "game-state", "change"}, ""))
+	pattern_GameState_GetStatuses_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "game-state", "status"}, ""))
 )
 
 var (
@@ -346,4 +405,5 @@ var (
 	forward_GameState_GetUserGameStates_0 = runtime.ForwardResponseMessage
 	forward_GameState_AddToLibrary_0      = runtime.ForwardResponseMessage
 	forward_GameState_ChangeStatus_0      = runtime.ForwardResponseMessage
+	forward_GameState_GetStatuses_0       = runtime.ForwardResponseMessage
 )

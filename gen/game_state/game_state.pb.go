@@ -376,6 +376,86 @@ func (*ChangeStatusResponse) Descriptor() ([]byte, []int) {
 	return file_game_state_game_state_proto_rawDescGZIP(), []int{7}
 }
 
+type GetStatusesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetStatusesRequest) Reset() {
+	*x = GetStatusesRequest{}
+	mi := &file_game_state_game_state_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetStatusesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetStatusesRequest) ProtoMessage() {}
+
+func (x *GetStatusesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_game_state_game_state_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetStatusesRequest.ProtoReflect.Descriptor instead.
+func (*GetStatusesRequest) Descriptor() ([]byte, []int) {
+	return file_game_state_game_state_proto_rawDescGZIP(), []int{8}
+}
+
+type GetStatusesResponse struct {
+	state         protoimpl.MessageState        `protogen:"open.v1"`
+	Statuses      []*GetStatusesResponse_Status `protobuf:"bytes,1,rep,name=statuses,proto3" json:"statuses,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetStatusesResponse) Reset() {
+	*x = GetStatusesResponse{}
+	mi := &file_game_state_game_state_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetStatusesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetStatusesResponse) ProtoMessage() {}
+
+func (x *GetStatusesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_game_state_game_state_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetStatusesResponse.ProtoReflect.Descriptor instead.
+func (*GetStatusesResponse) Descriptor() ([]byte, []int) {
+	return file_game_state_game_state_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *GetStatusesResponse) GetStatuses() []*GetStatusesResponse_Status {
+	if x != nil {
+		return x.Statuses
+	}
+	return nil
+}
+
 type GetUserGameStatesResponse_GameState struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	GameId        int64                  `protobuf:"varint,1,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
@@ -387,7 +467,7 @@ type GetUserGameStatesResponse_GameState struct {
 
 func (x *GetUserGameStatesResponse_GameState) Reset() {
 	*x = GetUserGameStatesResponse_GameState{}
-	mi := &file_game_state_game_state_proto_msgTypes[8]
+	mi := &file_game_state_game_state_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -399,7 +479,7 @@ func (x *GetUserGameStatesResponse_GameState) String() string {
 func (*GetUserGameStatesResponse_GameState) ProtoMessage() {}
 
 func (x *GetUserGameStatesResponse_GameState) ProtoReflect() protoreflect.Message {
-	mi := &file_game_state_game_state_proto_msgTypes[8]
+	mi := &file_game_state_game_state_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -436,6 +516,58 @@ func (x *GetUserGameStatesResponse_GameState) GetUserId() string {
 	return ""
 }
 
+type GetStatusesResponse_Status struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetStatusesResponse_Status) Reset() {
+	*x = GetStatusesResponse_Status{}
+	mi := &file_game_state_game_state_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetStatusesResponse_Status) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetStatusesResponse_Status) ProtoMessage() {}
+
+func (x *GetStatusesResponse_Status) ProtoReflect() protoreflect.Message {
+	mi := &file_game_state_game_state_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetStatusesResponse_Status.ProtoReflect.Descriptor instead.
+func (*GetStatusesResponse_Status) Descriptor() ([]byte, []int) {
+	return file_game_state_game_state_proto_rawDescGZIP(), []int{9, 0}
+}
+
+func (x *GetStatusesResponse_Status) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *GetStatusesResponse_Status) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
 var File_game_state_game_state_proto protoreflect.FileDescriptor
 
 const file_game_state_game_state_proto_rawDesc = "" +
@@ -463,12 +595,19 @@ const file_game_state_game_state_proto_rawDesc = "" +
 	"statusFrom\x12=\n" +
 	"\tstatus_to\x18\x02 \x01(\x0e2 .game_state.common.GameLinkStateR\bstatusTo\x12 \n" +
 	"\agame_id\x18\x03 \x01(\x03B\a\xfaB\x04\"\x02(\x00R\x06gameId\"\x16\n" +
-	"\x14ChangeStatusResponse2\xcd\x03\n" +
+	"\x14ChangeStatusResponse\"\x14\n" +
+	"\x12GetStatusesRequest\"\x87\x01\n" +
+	"\x13GetStatusesResponse\x12B\n" +
+	"\bstatuses\x18\x01 \x03(\v2&.game_state.GetStatusesResponse.StatusR\bstatuses\x1a,\n" +
+	"\x06Status\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name2\xbc\x04\n" +
 	"\tGameState\x12V\n" +
 	"\x04Ping\x12\x17.game_state.PingRequest\x1a\x18.game_state.PingResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v1/game-state/ping\x12\x80\x01\n" +
 	"\x11GetUserGameStates\x12$.game_state.GetUserGameStatesRequest\x1a%.game_state.GetUserGameStatesResponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/v1/game-state/user\x12p\n" +
 	"\fAddToLibrary\x12\x1f.game_state.AddToLibraryRequest\x1a .game_state.AddToLibraryResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/v1/game-state/add\x12s\n" +
-	"\fChangeStatus\x12\x1f.game_state.ChangeStatusRequest\x1a .game_state.ChangeStatusResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*2\x15/v1/game-state/changeBHZFgithub.com/sariya23/api_game_state_service/gen/game_state;pbgame_stateb\x06proto3"
+	"\fChangeStatus\x12\x1f.game_state.ChangeStatusRequest\x1a .game_state.ChangeStatusResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*2\x15/v1/game-state/change\x12m\n" +
+	"\vGetStatuses\x12\x1e.game_state.GetStatusesRequest\x1a\x1f.game_state.GetStatusesResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/v1/game-state/statusBHZFgithub.com/sariya23/api_game_state_service/gen/game_state;pbgame_stateb\x06proto3"
 
 var (
 	file_game_state_game_state_proto_rawDescOnce sync.Once
@@ -482,7 +621,7 @@ func file_game_state_game_state_proto_rawDescGZIP() []byte {
 	return file_game_state_game_state_proto_rawDescData
 }
 
-var file_game_state_game_state_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_game_state_game_state_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_game_state_game_state_proto_goTypes = []any{
 	(*PingRequest)(nil),                         // 0: game_state.PingRequest
 	(*PingResponse)(nil),                        // 1: game_state.PingResponse
@@ -492,27 +631,33 @@ var file_game_state_game_state_proto_goTypes = []any{
 	(*AddToLibraryResponse)(nil),                // 5: game_state.AddToLibraryResponse
 	(*ChangeStatusRequest)(nil),                 // 6: game_state.ChangeStatusRequest
 	(*ChangeStatusResponse)(nil),                // 7: game_state.ChangeStatusResponse
-	(*GetUserGameStatesResponse_GameState)(nil), // 8: game_state.GetUserGameStatesResponse.GameState
-	(common.GameLinkState)(0),                   // 9: game_state.common.GameLinkState
+	(*GetStatusesRequest)(nil),                  // 8: game_state.GetStatusesRequest
+	(*GetStatusesResponse)(nil),                 // 9: game_state.GetStatusesResponse
+	(*GetUserGameStatesResponse_GameState)(nil), // 10: game_state.GetUserGameStatesResponse.GameState
+	(*GetStatusesResponse_Status)(nil),          // 11: game_state.GetStatusesResponse.Status
+	(common.GameLinkState)(0),                   // 12: game_state.common.GameLinkState
 }
 var file_game_state_game_state_proto_depIdxs = []int32{
-	8, // 0: game_state.GetUserGameStatesResponse.game_states:type_name -> game_state.GetUserGameStatesResponse.GameState
-	9, // 1: game_state.ChangeStatusRequest.status_from:type_name -> game_state.common.GameLinkState
-	9, // 2: game_state.ChangeStatusRequest.status_to:type_name -> game_state.common.GameLinkState
-	9, // 3: game_state.GetUserGameStatesResponse.GameState.state:type_name -> game_state.common.GameLinkState
-	0, // 4: game_state.GameState.Ping:input_type -> game_state.PingRequest
-	2, // 5: game_state.GameState.GetUserGameStates:input_type -> game_state.GetUserGameStatesRequest
-	4, // 6: game_state.GameState.AddToLibrary:input_type -> game_state.AddToLibraryRequest
-	6, // 7: game_state.GameState.ChangeStatus:input_type -> game_state.ChangeStatusRequest
-	1, // 8: game_state.GameState.Ping:output_type -> game_state.PingResponse
-	3, // 9: game_state.GameState.GetUserGameStates:output_type -> game_state.GetUserGameStatesResponse
-	5, // 10: game_state.GameState.AddToLibrary:output_type -> game_state.AddToLibraryResponse
-	7, // 11: game_state.GameState.ChangeStatus:output_type -> game_state.ChangeStatusResponse
-	8, // [8:12] is the sub-list for method output_type
-	4, // [4:8] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	10, // 0: game_state.GetUserGameStatesResponse.game_states:type_name -> game_state.GetUserGameStatesResponse.GameState
+	12, // 1: game_state.ChangeStatusRequest.status_from:type_name -> game_state.common.GameLinkState
+	12, // 2: game_state.ChangeStatusRequest.status_to:type_name -> game_state.common.GameLinkState
+	11, // 3: game_state.GetStatusesResponse.statuses:type_name -> game_state.GetStatusesResponse.Status
+	12, // 4: game_state.GetUserGameStatesResponse.GameState.state:type_name -> game_state.common.GameLinkState
+	0,  // 5: game_state.GameState.Ping:input_type -> game_state.PingRequest
+	2,  // 6: game_state.GameState.GetUserGameStates:input_type -> game_state.GetUserGameStatesRequest
+	4,  // 7: game_state.GameState.AddToLibrary:input_type -> game_state.AddToLibraryRequest
+	6,  // 8: game_state.GameState.ChangeStatus:input_type -> game_state.ChangeStatusRequest
+	8,  // 9: game_state.GameState.GetStatuses:input_type -> game_state.GetStatusesRequest
+	1,  // 10: game_state.GameState.Ping:output_type -> game_state.PingResponse
+	3,  // 11: game_state.GameState.GetUserGameStates:output_type -> game_state.GetUserGameStatesResponse
+	5,  // 12: game_state.GameState.AddToLibrary:output_type -> game_state.AddToLibraryResponse
+	7,  // 13: game_state.GameState.ChangeStatus:output_type -> game_state.ChangeStatusResponse
+	9,  // 14: game_state.GameState.GetStatuses:output_type -> game_state.GetStatusesResponse
+	10, // [10:15] is the sub-list for method output_type
+	5,  // [5:10] is the sub-list for method input_type
+	5,  // [5:5] is the sub-list for extension type_name
+	5,  // [5:5] is the sub-list for extension extendee
+	0,  // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_game_state_game_state_proto_init() }
@@ -526,7 +671,7 @@ func file_game_state_game_state_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_game_state_game_state_proto_rawDesc), len(file_game_state_game_state_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

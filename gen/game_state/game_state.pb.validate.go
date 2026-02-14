@@ -940,6 +940,244 @@ var _ interface {
 	ErrorName() string
 } = ChangeStatusResponseValidationError{}
 
+// Validate checks the field values on GetStatusesRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetStatusesRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetStatusesRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetStatusesRequestMultiError, or nil if none found.
+func (m *GetStatusesRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetStatusesRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if len(errors) > 0 {
+		return GetStatusesRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetStatusesRequestMultiError is an error wrapping multiple validation errors
+// returned by GetStatusesRequest.ValidateAll() if the designated constraints
+// aren't met.
+type GetStatusesRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetStatusesRequestMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetStatusesRequestMultiError) AllErrors() []error { return m }
+
+// GetStatusesRequestValidationError is the validation error returned by
+// GetStatusesRequest.Validate if the designated constraints aren't met.
+type GetStatusesRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetStatusesRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetStatusesRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetStatusesRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetStatusesRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetStatusesRequestValidationError) ErrorName() string {
+	return "GetStatusesRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetStatusesRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetStatusesRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetStatusesRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetStatusesRequestValidationError{}
+
+// Validate checks the field values on GetStatusesResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetStatusesResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetStatusesResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetStatusesResponseMultiError, or nil if none found.
+func (m *GetStatusesResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetStatusesResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	for idx, item := range m.GetStatuses() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, GetStatusesResponseValidationError{
+						field:  fmt.Sprintf("Statuses[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, GetStatusesResponseValidationError{
+						field:  fmt.Sprintf("Statuses[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return GetStatusesResponseValidationError{
+					field:  fmt.Sprintf("Statuses[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if len(errors) > 0 {
+		return GetStatusesResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetStatusesResponseMultiError is an error wrapping multiple validation
+// errors returned by GetStatusesResponse.ValidateAll() if the designated
+// constraints aren't met.
+type GetStatusesResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetStatusesResponseMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetStatusesResponseMultiError) AllErrors() []error { return m }
+
+// GetStatusesResponseValidationError is the validation error returned by
+// GetStatusesResponse.Validate if the designated constraints aren't met.
+type GetStatusesResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetStatusesResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetStatusesResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetStatusesResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetStatusesResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetStatusesResponseValidationError) ErrorName() string {
+	return "GetStatusesResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetStatusesResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetStatusesResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetStatusesResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetStatusesResponseValidationError{}
+
 // Validate checks the field values on GetUserGameStatesResponse_GameState with
 // the rules defined in the proto definition for this message. If any rules
 // are violated, the first error encountered is returned, or nil if there are
@@ -1050,3 +1288,109 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = GetUserGameStatesResponse_GameStateValidationError{}
+
+// Validate checks the field values on GetStatusesResponse_Status with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetStatusesResponse_Status) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetStatusesResponse_Status with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetStatusesResponse_StatusMultiError, or nil if none found.
+func (m *GetStatusesResponse_Status) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetStatusesResponse_Status) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Id
+
+	// no validation rules for Name
+
+	if len(errors) > 0 {
+		return GetStatusesResponse_StatusMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetStatusesResponse_StatusMultiError is an error wrapping multiple
+// validation errors returned by GetStatusesResponse_Status.ValidateAll() if
+// the designated constraints aren't met.
+type GetStatusesResponse_StatusMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetStatusesResponse_StatusMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetStatusesResponse_StatusMultiError) AllErrors() []error { return m }
+
+// GetStatusesResponse_StatusValidationError is the validation error returned
+// by GetStatusesResponse_Status.Validate if the designated constraints aren't met.
+type GetStatusesResponse_StatusValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetStatusesResponse_StatusValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetStatusesResponse_StatusValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetStatusesResponse_StatusValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetStatusesResponse_StatusValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetStatusesResponse_StatusValidationError) ErrorName() string {
+	return "GetStatusesResponse_StatusValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetStatusesResponse_StatusValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetStatusesResponse_Status.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetStatusesResponse_StatusValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetStatusesResponse_StatusValidationError{}
