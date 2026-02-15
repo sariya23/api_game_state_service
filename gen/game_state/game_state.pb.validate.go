@@ -1211,8 +1211,6 @@ func (m *GetUserGamesByStatusRequest) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
-	// no validation rules for Status
-
 	if len(errors) > 0 {
 		return GetUserGamesByStatusRequestMultiError(errors)
 	}
@@ -1349,6 +1347,8 @@ func (m *GetUserGamesByStatusResponse) validate(all bool) error {
 		}
 
 	}
+
+	// no validation rules for Total
 
 	if len(errors) > 0 {
 		return GetUserGamesByStatusResponseMultiError(errors)

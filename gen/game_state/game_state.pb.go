@@ -459,7 +459,7 @@ func (x *GetStatusesResponse) GetStatuses() []*GetStatusesResponse_Status {
 type GetUserGamesByStatusRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Status        common.GameLinkState   `protobuf:"varint,2,opt,name=status,proto3,enum=game_state.common.GameLinkState" json:"status,omitempty"`
+	Status        []common.GameLinkState `protobuf:"varint,2,rep,packed,name=status,proto3,enum=game_state.common.GameLinkState" json:"status,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -501,16 +501,17 @@ func (x *GetUserGamesByStatusRequest) GetUserId() string {
 	return ""
 }
 
-func (x *GetUserGamesByStatusRequest) GetStatus() common.GameLinkState {
+func (x *GetUserGamesByStatusRequest) GetStatus() []common.GameLinkState {
 	if x != nil {
 		return x.Status
 	}
-	return common.GameLinkState(0)
+	return nil
 }
 
 type GetUserGamesByStatusResponse struct {
 	state         protoimpl.MessageState                    `protogen:"open.v1"`
 	GameStates    []*GetUserGamesByStatusResponse_GameState `protobuf:"bytes,1,rep,name=game_states,json=gameStates,proto3" json:"game_states,omitempty"`
+	Total         int64                                     `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -550,6 +551,13 @@ func (x *GetUserGamesByStatusResponse) GetGameStates() []*GetUserGamesByStatusRe
 		return x.GameStates
 	}
 	return nil
+}
+
+func (x *GetUserGamesByStatusResponse) GetTotal() int64 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
 }
 
 type GetUserGameStatesResponse_GameState struct {
@@ -760,10 +768,11 @@ const file_game_state_game_state_proto_rawDesc = "" +
 	"\x04name\x18\x02 \x01(\tR\x04name\"y\n" +
 	"\x1bGetUserGamesByStatusRequest\x12 \n" +
 	"\auser_id\x18\x01 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\x06userId\x128\n" +
-	"\x06status\x18\x02 \x01(\x0e2 .game_state.common.GameLinkStateR\x06status\"\xea\x01\n" +
+	"\x06status\x18\x02 \x03(\x0e2 .game_state.common.GameLinkStateR\x06status\"\x80\x02\n" +
 	"\x1cGetUserGamesByStatusResponse\x12S\n" +
 	"\vgame_states\x18\x01 \x03(\v22.game_state.GetUserGamesByStatusResponse.GameStateR\n" +
-	"gameStates\x1au\n" +
+	"gameStates\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x03R\x05total\x1au\n" +
 	"\tGameState\x12\x17\n" +
 	"\agame_id\x18\x01 \x01(\x03R\x06gameId\x126\n" +
 	"\x05state\x18\x02 \x01(\x0e2 .game_state.common.GameLinkStateR\x05state\x12\x17\n" +

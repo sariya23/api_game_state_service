@@ -76,19 +76,22 @@
             "name": "status",
             "in": "query",
             "required": false,
-            "type": "string",
-            "enum": [
-              "UNKNOWN",
-              "NOT_IN_LIBRARY",
-              "IN_LIBRARY",
-              "BACKLOG",
-              "IN_PROGRESS",
-              "DONE",
-              "NOT_COMPLETED",
-              "RE_PLAYING",
-              "ON_PAUSE"
-            ],
-            "default": "UNKNOWN"
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "UNKNOWN",
+                "NOT_IN_LIBRARY",
+                "IN_LIBRARY",
+                "BACKLOG",
+                "IN_PROGRESS",
+                "DONE",
+                "NOT_COMPLETED",
+                "RE_PLAYING",
+                "ON_PAUSE"
+              ]
+            },
+            "collectionFormat": "multi"
           }
         ],
         "tags": [
@@ -326,6 +329,10 @@
             "type": "object",
             "$ref": "#/definitions/game_stateGetUserGamesByStatusResponseGameState"
           }
+        },
+        "total": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
