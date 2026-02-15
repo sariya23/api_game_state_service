@@ -1178,6 +1178,250 @@ var _ interface {
 	ErrorName() string
 } = GetStatusesResponseValidationError{}
 
+// Validate checks the field values on GetUserGamesByStatusRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetUserGamesByStatusRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetUserGamesByStatusRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetUserGamesByStatusRequestMultiError, or nil if none found.
+func (m *GetUserGamesByStatusRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetUserGamesByStatusRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for UserId
+
+	// no validation rules for Status
+
+	if len(errors) > 0 {
+		return GetUserGamesByStatusRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetUserGamesByStatusRequestMultiError is an error wrapping multiple
+// validation errors returned by GetUserGamesByStatusRequest.ValidateAll() if
+// the designated constraints aren't met.
+type GetUserGamesByStatusRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetUserGamesByStatusRequestMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetUserGamesByStatusRequestMultiError) AllErrors() []error { return m }
+
+// GetUserGamesByStatusRequestValidationError is the validation error returned
+// by GetUserGamesByStatusRequest.Validate if the designated constraints
+// aren't met.
+type GetUserGamesByStatusRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetUserGamesByStatusRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetUserGamesByStatusRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetUserGamesByStatusRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetUserGamesByStatusRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetUserGamesByStatusRequestValidationError) ErrorName() string {
+	return "GetUserGamesByStatusRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetUserGamesByStatusRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetUserGamesByStatusRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetUserGamesByStatusRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetUserGamesByStatusRequestValidationError{}
+
+// Validate checks the field values on GetUserGamesByStatusResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetUserGamesByStatusResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetUserGamesByStatusResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetUserGamesByStatusResponseMultiError, or nil if none found.
+func (m *GetUserGamesByStatusResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetUserGamesByStatusResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	for idx, item := range m.GetGameStates() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, GetUserGamesByStatusResponseValidationError{
+						field:  fmt.Sprintf("GameStates[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, GetUserGamesByStatusResponseValidationError{
+						field:  fmt.Sprintf("GameStates[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return GetUserGamesByStatusResponseValidationError{
+					field:  fmt.Sprintf("GameStates[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if len(errors) > 0 {
+		return GetUserGamesByStatusResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetUserGamesByStatusResponseMultiError is an error wrapping multiple
+// validation errors returned by GetUserGamesByStatusResponse.ValidateAll() if
+// the designated constraints aren't met.
+type GetUserGamesByStatusResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetUserGamesByStatusResponseMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetUserGamesByStatusResponseMultiError) AllErrors() []error { return m }
+
+// GetUserGamesByStatusResponseValidationError is the validation error returned
+// by GetUserGamesByStatusResponse.Validate if the designated constraints
+// aren't met.
+type GetUserGamesByStatusResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetUserGamesByStatusResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetUserGamesByStatusResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetUserGamesByStatusResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetUserGamesByStatusResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetUserGamesByStatusResponseValidationError) ErrorName() string {
+	return "GetUserGamesByStatusResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetUserGamesByStatusResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetUserGamesByStatusResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetUserGamesByStatusResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetUserGamesByStatusResponseValidationError{}
+
 // Validate checks the field values on GetUserGameStatesResponse_GameState with
 // the rules defined in the proto definition for this message. If any rules
 // are violated, the first error encountered is returned, or nil if there are
@@ -1394,3 +1638,115 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = GetStatusesResponse_StatusValidationError{}
+
+// Validate checks the field values on GetUserGamesByStatusResponse_GameState
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the first error encountered is returned, or nil if
+// there are no violations.
+func (m *GetUserGamesByStatusResponse_GameState) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// GetUserGamesByStatusResponse_GameState with the rules defined in the proto
+// definition for this message. If any rules are violated, the result is a
+// list of violation errors wrapped in
+// GetUserGamesByStatusResponse_GameStateMultiError, or nil if none found.
+func (m *GetUserGamesByStatusResponse_GameState) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetUserGamesByStatusResponse_GameState) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for GameId
+
+	// no validation rules for State
+
+	// no validation rules for UserId
+
+	if len(errors) > 0 {
+		return GetUserGamesByStatusResponse_GameStateMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetUserGamesByStatusResponse_GameStateMultiError is an error wrapping
+// multiple validation errors returned by
+// GetUserGamesByStatusResponse_GameState.ValidateAll() if the designated
+// constraints aren't met.
+type GetUserGamesByStatusResponse_GameStateMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetUserGamesByStatusResponse_GameStateMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetUserGamesByStatusResponse_GameStateMultiError) AllErrors() []error { return m }
+
+// GetUserGamesByStatusResponse_GameStateValidationError is the validation
+// error returned by GetUserGamesByStatusResponse_GameState.Validate if the
+// designated constraints aren't met.
+type GetUserGamesByStatusResponse_GameStateValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetUserGamesByStatusResponse_GameStateValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetUserGamesByStatusResponse_GameStateValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetUserGamesByStatusResponse_GameStateValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetUserGamesByStatusResponse_GameStateValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetUserGamesByStatusResponse_GameStateValidationError) ErrorName() string {
+	return "GetUserGamesByStatusResponse_GameStateValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetUserGamesByStatusResponse_GameStateValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetUserGamesByStatusResponse_GameState.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetUserGamesByStatusResponse_GameStateValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetUserGamesByStatusResponse_GameStateValidationError{}

@@ -48,6 +48,54 @@
         ]
       }
     },
+    "/v1/game-state/by-status": {
+      "post": {
+        "operationId": "GameState_GetUserGamesByStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/game_stateGetUserGamesByStatusResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "UNKNOWN",
+              "NOT_IN_LIBRARY",
+              "IN_LIBRARY",
+              "BACKLOG",
+              "IN_PROGRESS",
+              "DONE",
+              "NOT_COMPLETED",
+              "RE_PLAYING",
+              "ON_PAUSE"
+            ],
+            "default": "UNKNOWN"
+          }
+        ],
+        "tags": [
+          "GameState"
+        ]
+      }
+    },
     "/v1/game-state/change": {
       "patch": {
         "operationId": "GameState_ChangeStatus",
@@ -158,21 +206,6 @@
     }
   },
   "definitions": {
-    "GetUserGameStatesResponseGameState": {
-      "type": "object",
-      "properties": {
-        "gameId": {
-          "type": "string",
-          "format": "int64"
-        },
-        "state": {
-          "$ref": "#/definitions/commonGameLinkState"
-        },
-        "userId": {
-          "type": "string"
-        }
-      }
-    },
     "commonGameLinkState": {
       "type": "string",
       "enum": [
@@ -264,8 +297,50 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/GetUserGameStatesResponseGameState"
+            "$ref": "#/definitions/game_stateGetUserGameStatesResponseGameState"
           }
+        }
+      }
+    },
+    "game_stateGetUserGameStatesResponseGameState": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "state": {
+          "$ref": "#/definitions/commonGameLinkState"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "game_stateGetUserGamesByStatusResponse": {
+      "type": "object",
+      "properties": {
+        "gameStates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/game_stateGetUserGamesByStatusResponseGameState"
+          }
+        }
+      }
+    },
+    "game_stateGetUserGamesByStatusResponseGameState": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "state": {
+          "$ref": "#/definitions/commonGameLinkState"
+        },
+        "userId": {
+          "type": "string"
         }
       }
     },

@@ -19,11 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	GameState_Ping_FullMethodName              = "/game_state.GameState/Ping"
-	GameState_GetUserGameStates_FullMethodName = "/game_state.GameState/GetUserGameStates"
-	GameState_AddToLibrary_FullMethodName      = "/game_state.GameState/AddToLibrary"
-	GameState_ChangeStatus_FullMethodName      = "/game_state.GameState/ChangeStatus"
-	GameState_GetStatuses_FullMethodName       = "/game_state.GameState/GetStatuses"
+	GameState_Ping_FullMethodName                 = "/game_state.GameState/Ping"
+	GameState_GetUserGameStates_FullMethodName    = "/game_state.GameState/GetUserGameStates"
+	GameState_AddToLibrary_FullMethodName         = "/game_state.GameState/AddToLibrary"
+	GameState_ChangeStatus_FullMethodName         = "/game_state.GameState/ChangeStatus"
+	GameState_GetStatuses_FullMethodName          = "/game_state.GameState/GetStatuses"
+	GameState_GetUserGamesByStatus_FullMethodName = "/game_state.GameState/GetUserGamesByStatus"
 )
 
 // GameStateClient is the client API for GameState service.
@@ -35,6 +36,7 @@ type GameStateClient interface {
 	AddToLibrary(ctx context.Context, in *AddToLibraryRequest, opts ...grpc.CallOption) (*AddToLibraryResponse, error)
 	ChangeStatus(ctx context.Context, in *ChangeStatusRequest, opts ...grpc.CallOption) (*ChangeStatusResponse, error)
 	GetStatuses(ctx context.Context, in *GetStatusesRequest, opts ...grpc.CallOption) (*GetStatusesResponse, error)
+	GetUserGamesByStatus(ctx context.Context, in *GetUserGamesByStatusRequest, opts ...grpc.CallOption) (*GetUserGamesByStatusResponse, error)
 }
 
 type gameStateClient struct {
@@ -95,6 +97,16 @@ func (c *gameStateClient) GetStatuses(ctx context.Context, in *GetStatusesReques
 	return out, nil
 }
 
+func (c *gameStateClient) GetUserGamesByStatus(ctx context.Context, in *GetUserGamesByStatusRequest, opts ...grpc.CallOption) (*GetUserGamesByStatusResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserGamesByStatusResponse)
+	err := c.cc.Invoke(ctx, GameState_GetUserGamesByStatus_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GameStateServer is the server API for GameState service.
 // All implementations must embed UnimplementedGameStateServer
 // for forward compatibility.
@@ -104,6 +116,7 @@ type GameStateServer interface {
 	AddToLibrary(context.Context, *AddToLibraryRequest) (*AddToLibraryResponse, error)
 	ChangeStatus(context.Context, *ChangeStatusRequest) (*ChangeStatusResponse, error)
 	GetStatuses(context.Context, *GetStatusesRequest) (*GetStatusesResponse, error)
+	GetUserGamesByStatus(context.Context, *GetUserGamesByStatusRequest) (*GetUserGamesByStatusResponse, error)
 	mustEmbedUnimplementedGameStateServer()
 }
 
@@ -128,6 +141,9 @@ func (UnimplementedGameStateServer) ChangeStatus(context.Context, *ChangeStatusR
 }
 func (UnimplementedGameStateServer) GetStatuses(context.Context, *GetStatusesRequest) (*GetStatusesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetStatuses not implemented")
+}
+func (UnimplementedGameStateServer) GetUserGamesByStatus(context.Context, *GetUserGamesByStatusRequest) (*GetUserGamesByStatusResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetUserGamesByStatus not implemented")
 }
 func (UnimplementedGameStateServer) mustEmbedUnimplementedGameStateServer() {}
 func (UnimplementedGameStateServer) testEmbeddedByValue()                   {}
@@ -240,6 +256,24 @@ func _GameState_GetStatuses_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GameState_GetUserGamesByStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserGamesByStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GameStateServer).GetUserGamesByStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GameState_GetUserGamesByStatus_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GameStateServer).GetUserGamesByStatus(ctx, req.(*GetUserGamesByStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GameState_ServiceDesc is the grpc.ServiceDesc for GameState service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -266,6 +300,10 @@ var GameState_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetStatuses",
 			Handler:    _GameState_GetStatuses_Handler,
+		},
+		{
+			MethodName: "GetUserGamesByStatus",
+			Handler:    _GameState_GetUserGamesByStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

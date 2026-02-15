@@ -40,6 +40,12 @@ service GameState {
       get: "/v1/game-state/status"
     };
   }
+
+  rpc GetUserGamesByStatus(GetUserGamesByStatusRequest) returns (GetUserGamesByStatusResponse) {
+    option (google.api.http) = {
+      post: "/v1/game-state/by-status"
+    };
+  }
 }
 
 message PingRequest {}
@@ -82,5 +88,19 @@ message GetStatusesResponse {
   message Status {
     int64 id = 1;
     string name = 2;
+  }
+}
+
+message GetUserGamesByStatusRequest {
+  string user_id = 1;
+  common.GameLinkState status = 2;
+}
+
+message GetUserGamesByStatusResponse {
+  repeated GameState game_states = 1;
+  message GameState {
+    int64 game_id = 1;
+    common.GameLinkState state = 2;
+    string user_id = 3;
   }
 }
