@@ -307,7 +307,7 @@
         "userId": {
           "type": "string"
         },
-        "status": {
+        "statuses": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/commonGameLinkState"

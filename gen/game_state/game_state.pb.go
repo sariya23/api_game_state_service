@@ -459,7 +459,7 @@ func (x *GetStatusesResponse) GetStatuses() []*GetStatusesResponse_Status {
 type GetUserGamesByStatusRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Status        []common.GameLinkState `protobuf:"varint,2,rep,packed,name=status,proto3,enum=game_state.common.GameLinkState" json:"status,omitempty"`
+	Statuses      []common.GameLinkState `protobuf:"varint,2,rep,packed,name=statuses,proto3,enum=game_state.common.GameLinkState" json:"statuses,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -501,9 +501,9 @@ func (x *GetUserGamesByStatusRequest) GetUserId() string {
 	return ""
 }
 
-func (x *GetUserGamesByStatusRequest) GetStatus() []common.GameLinkState {
+func (x *GetUserGamesByStatusRequest) GetStatuses() []common.GameLinkState {
 	if x != nil {
-		return x.Status
+		return x.Statuses
 	}
 	return nil
 }
@@ -765,10 +765,10 @@ const file_game_state_game_state_proto_rawDesc = "" +
 	"\bstatuses\x18\x01 \x03(\v2&.game_state.GetStatusesResponse.StatusR\bstatuses\x1a,\n" +
 	"\x06Status\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"y\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"}\n" +
 	"\x1bGetUserGamesByStatusRequest\x12 \n" +
-	"\auser_id\x18\x01 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\x06userId\x128\n" +
-	"\x06status\x18\x02 \x03(\x0e2 .game_state.common.GameLinkStateR\x06status\"\x80\x02\n" +
+	"\auser_id\x18\x01 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\x06userId\x12<\n" +
+	"\bstatuses\x18\x02 \x03(\x0e2 .game_state.common.GameLinkStateR\bstatuses\"\x80\x02\n" +
 	"\x1cGetUserGamesByStatusResponse\x12S\n" +
 	"\vgame_states\x18\x01 \x03(\v22.game_state.GetUserGamesByStatusResponse.GameStateR\n" +
 	"gameStates\x12\x14\n" +
@@ -821,7 +821,7 @@ var file_game_state_game_state_proto_depIdxs = []int32{
 	15, // 1: game_state.ChangeStatusRequest.status_from:type_name -> game_state.common.GameLinkState
 	15, // 2: game_state.ChangeStatusRequest.status_to:type_name -> game_state.common.GameLinkState
 	13, // 3: game_state.GetStatusesResponse.statuses:type_name -> game_state.GetStatusesResponse.Status
-	15, // 4: game_state.GetUserGamesByStatusRequest.status:type_name -> game_state.common.GameLinkState
+	15, // 4: game_state.GetUserGamesByStatusRequest.statuses:type_name -> game_state.common.GameLinkState
 	14, // 5: game_state.GetUserGamesByStatusResponse.game_states:type_name -> game_state.GetUserGamesByStatusResponse.GameState
 	15, // 6: game_state.GetUserGameStatesResponse.GameState.state:type_name -> game_state.common.GameLinkState
 	15, // 7: game_state.GetUserGamesByStatusResponse.GameState.state:type_name -> game_state.common.GameLinkState

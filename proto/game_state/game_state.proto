@@ -94,7 +94,7 @@ message GetStatusesResponse {
 
 message GetUserGamesByStatusRequest {
   string user_id = 1 [(validate.rules).string.min_len = 1];
-  repeated common.GameLinkState status = 2;
+  repeated common.GameLinkState statuses = 2;
 }
 
 message GetUserGamesByStatusResponse {
