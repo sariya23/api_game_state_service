@@ -43,7 +43,8 @@ service GameState {
 
   rpc GetUserGamesByStatus(GetUserGamesByStatusRequest) returns (GetUserGamesByStatusResponse) {
     option (google.api.http) = {
-      post: "/v1/game-state/by-status"
+      post: "/v1/game-state/by-status",
+      body: "*"
     };
   }
 }

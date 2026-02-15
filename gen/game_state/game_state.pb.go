@@ -776,14 +776,14 @@ const file_game_state_game_state_proto_rawDesc = "" +
 	"\tGameState\x12\x17\n" +
 	"\agame_id\x18\x01 \x01(\x03R\x06gameId\x126\n" +
 	"\x05state\x18\x02 \x01(\x0e2 .game_state.common.GameLinkStateR\x05state\x12\x17\n" +
-	"\auser_id\x18\x03 \x01(\tR\x06userId2\xca\x05\n" +
+	"\auser_id\x18\x03 \x01(\tR\x06userId2\xcd\x05\n" +
 	"\tGameState\x12V\n" +
 	"\x04Ping\x12\x17.game_state.PingRequest\x1a\x18.game_state.PingResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v1/game-state/ping\x12\x80\x01\n" +
 	"\x11GetUserGameStates\x12$.game_state.GetUserGameStatesRequest\x1a%.game_state.GetUserGameStatesResponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/v1/game-state/user\x12p\n" +
 	"\fAddToLibrary\x12\x1f.game_state.AddToLibraryRequest\x1a .game_state.AddToLibraryResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/v1/game-state/add\x12s\n" +
 	"\fChangeStatus\x12\x1f.game_state.ChangeStatusRequest\x1a .game_state.ChangeStatusResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*2\x15/v1/game-state/change\x12m\n" +
-	"\vGetStatuses\x12\x1e.game_state.GetStatusesRequest\x1a\x1f.game_state.GetStatusesResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/v1/game-state/status\x12\x8b\x01\n" +
-	"\x14GetUserGamesByStatus\x12'.game_state.GetUserGamesByStatusRequest\x1a(.game_state.GetUserGamesByStatusResponse\" \x82\xd3\xe4\x93\x02\x1a\"\x18/v1/game-state/by-statusBHZFgithub.com/sariya23/api_game_state_service/gen/game_state;pbgame_stateb\x06proto3"
+	"\vGetStatuses\x12\x1e.game_state.GetStatusesRequest\x1a\x1f.game_state.GetStatusesResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/v1/game-state/status\x12\x8e\x01\n" +
+	"\x14GetUserGamesByStatus\x12'.game_state.GetUserGamesByStatusRequest\x1a(.game_state.GetUserGamesByStatusResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/v1/game-state/by-statusBHZFgithub.com/sariya23/api_game_state_service/gen/game_state;pbgame_stateb\x06proto3"
 
 var (
 	file_game_state_game_state_proto_rawDescOnce sync.Once
