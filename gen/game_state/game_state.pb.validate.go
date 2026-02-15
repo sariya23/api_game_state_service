@@ -1200,7 +1200,16 @@ func (m *GetUserGamesByStatusRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for UserId
+	if utf8.RuneCountInString(m.GetUserId()) < 1 {
+		err := GetUserGamesByStatusRequestValidationError{
+			field:  "UserId",
+			reason: "value length must be at least 1 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
 	// no validation rules for Status
 

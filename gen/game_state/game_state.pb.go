@@ -757,9 +757,9 @@ const file_game_state_game_state_proto_rawDesc = "" +
 	"\bstatuses\x18\x01 \x03(\v2&.game_state.GetStatusesResponse.StatusR\bstatuses\x1a,\n" +
 	"\x06Status\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"p\n" +
-	"\x1bGetUserGamesByStatusRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x128\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"y\n" +
+	"\x1bGetUserGamesByStatusRequest\x12 \n" +
+	"\auser_id\x18\x01 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\x06userId\x128\n" +
 	"\x06status\x18\x02 \x01(\x0e2 .game_state.common.GameLinkStateR\x06status\"\xea\x01\n" +
 	"\x1cGetUserGamesByStatusResponse\x12S\n" +
 	"\vgame_states\x18\x01 \x03(\v22.game_state.GetUserGamesByStatusResponse.GameStateR\n" +
